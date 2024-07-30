@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Checkout</h2>
+  <div *ngIf="cartItems$ | async as cartItems">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.product.imageUrl" alt="{{item.product.name}}">
+      <h3>{{ item.product.name }}</h3>
+      <p>Quantity: {{ item.quantity }}</p>
+      <p>Total: {{ (item.product.price * item.quantity) | currency }}</p>
+    </div>
+    <div *ngIf="cartItems.length > 0">
+      <button (click)="completeCheckout()" class="btn btn-success">Complete Checkout</button>
+    </div>
+    <div *ngIf="cartItems.length === 0">
+      <p>Your cart is empty.</p>
+    </div>
+  </div>
+</div>
